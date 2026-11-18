@@ -40,7 +40,7 @@ target module.
 ```bash
 python3 -m venv .venv
 .venv/bin/pip install -e . pytest
-.venv/bin/python -m pytest -q          # 8 passed
+.venv/bin/python -m pytest -q          # 9 passed
 ```
 
 Requires CPython >= 3.9. No runtime dependencies.
@@ -99,14 +99,38 @@ What the numbers say, and what they do not:
 - `logging` has only four modules above the 90%-presence filter, so its top-10 is the
   whole set and cannot churn; it is included as a control, not as evidence of stability.
 
+### Detection floor: controlled injection
+
+To test how small a regression this method can see, `experiments/injection.py` builds a
+fixture package with six modules of comparable cost (~470–790 us each) and adds
+`time.sleep(delta)` to one of them, so the true difference is known exactly. Each trial
+runs 8 cold starts and reuses the first k; detection means the injected module has the
+highest median self time. 30 trials per delta, seed `20261119`; artifact in
+`evidence/injection.json`.
+
+| injected delta | k=1 | k=2 | k=3 | k=5 |
+|---|---|---|---|---|
+| 0 us (control) | 16.7% | 23.3% | 10.0% | 13.3% |
+| +10 us | 90.0% | 100% | 100% | 100% |
+| +25 us | 93.3% | 100% | 96.7% | 100% |
+| +50 us | 96.7% | 96.7% | 96.7% | 96.7% |
+
+The control lands at the chance level for six modules (1/6 = 16.7%), so the method is
+not simply always picking the injected slot. A +10 us regression — about 2% of a
+500 us module — is caught in 90% of single cold starts and 100% at k=2. This is the
+sensitivity limit of *relative* comparison inside one process; it does not contradict
+the cross-run top-10 churn above, which comes from common-mode shifts between separate
+processes moving near-tied modules across the top-10 cutoff.
+
 There is no claim here of a speedup. This tool measures measurement error; inventing a
 speedup number would contradict its purpose.
 
 ## Verification
 
 ```bash
-.venv/bin/python -m pytest -q                  # 8 passed in 0.20s
+.venv/bin/python -m pytest -q                  # 9 passed in 0.48s
 .venv/bin/importsteady asyncio -n 30 --json /tmp/a.json
+python3 experiments/injection.py --trials 30 --runs 8 --deltas 0,10,25,50
 python3 - <<'PY'                               # all 4 artifacts self-consistent
 import json,glob
 for f in glob.glob('evidence/*.json'):
@@ -118,10 +142,10 @@ print('evidence ok')
 PY
 ```
 
-Units tests cover: self-time nesting (a 20 ms child must not be charged to its parent),
+Unit tests cover: self-time nesting (a 20 ms child must not be charged to its parent),
 preloaded-target rejection, missing-target error, quantile definition, presence filter,
-IQR, deterministic bootstrap, full-k convergence, and detection of an unstable
-single-run ranking.
+IQR, deterministic bootstrap, full-k convergence, detection of an unstable
+single-run ranking, and the CLI end-to-end JSON artifact.
 
 ## Limitations
 
@@ -143,14 +167,17 @@ single-run ranking.
 
 ## 本轮创新
 
-First quantification of **rank stability** in Python import-cost attribution: instead of
-another profiler, this measures how often a k-cold-start subsample reproduces the
-all-run top-1 and top-10 set, on four real stdlib targets (1,200 cold starts total).
-The new, falsifiable conclusion is that the head is stable at a >=1.37x gap but the
-top-10 membership is not (Jaccard 0.85 at k=1 for `urllib.request`, 0.91 even at
-k=13) — a failure mode that a single `-X importtime` run cannot show and that the
-existing `speedgap` / `benchreconcile` projects (synthetic-vs-real benchmarks and
-README claim reconciliation) do not measure.
+First quantification of **rank stability** in Python import-cost attribution, plus a
+controlled detection-floor calibration: instead of another profiler, this measures how
+often a k-cold-start subsample reproduces the all-run top-1 and top-10 set on four real
+stdlib targets (120 measured cold starts), and how small a *known* injected regression must be
+to be detected (120 fixture cold starts per delta, 30 trials each, with a chance-level
+control). The new, falsifiable conclusions are (a) the head is stable at a >=1.37x gap
+but top-10 membership is not — Jaccard 0.85 at k=1 for `urllib.request`, 0.91 even at
+k=13, 1.00 at k=30; and (b) a +10 us regression is detected in 90% of single cold
+starts because modules are compared within one process. A single `-X importtime` run
+cannot show either, and the existing `speedgap` / `benchreconcile` projects (synthetic
+vs real benchmarks, README claim reconciliation) do not measure rank stability.
 
 ## License
 
