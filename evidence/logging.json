@@ -1,0 +1,347 @@
+{
+  "config": {
+    "command": "/usr/bin/python3 -m importsteady._child logging",
+    "draws": 400,
+    "runs": 30,
+    "seed": 20261119,
+    "timeout_s": 120.0,
+    "timer": "time.perf_counter_ns inside exec_module",
+    "warmup": 2
+  },
+  "convergence": [
+    {
+      "k": 1,
+      "single_run_top1": {
+        "logging": 400
+      },
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 2,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 3,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 5,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 8,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 13,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 21,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    },
+    {
+      "k": 30,
+      "single_run_top1": null,
+      "top10_jaccard": 1.0,
+      "top1_agreement": 1.0
+    }
+  ],
+  "environment": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "executable": "/usr/bin/python3",
+    "implementation": "CPython",
+    "platform": "Linux-6.8.0-124-generic-x86_64-with-glibc2.39",
+    "python": "3.12.3"
+  },
+  "min_k_top1_90pct": 1,
+  "runs_self_ns": [
+    {
+      "logging": 1823408,
+      "string": 565503,
+      "textwrap": 1622571,
+      "traceback": 513044
+    },
+    {
+      "logging": 1916204,
+      "string": 581112,
+      "textwrap": 1797078,
+      "traceback": 532982
+    },
+    {
+      "logging": 2712569,
+      "string": 769627,
+      "textwrap": 2195788,
+      "traceback": 700998
+    },
+    {
+      "logging": 1886786,
+      "string": 572236,
+      "textwrap": 1702190,
+      "traceback": 544565
+    },
+    {
+      "logging": 1983429,
+      "string": 599998,
+      "textwrap": 1846301,
+      "traceback": 549563
+    },
+    {
+      "logging": 1948082,
+      "string": 570903,
+      "textwrap": 1755170,
+      "traceback": 525708
+    },
+    {
+      "logging": 1884113,
+      "string": 556015,
+      "textwrap": 1763014,
+      "traceback": 522533
+    },
+    {
+      "logging": 1877089,
+      "string": 568058,
+      "textwrap": 1748016,
+      "traceback": 511932
+    },
+    {
+      "logging": 1953622,
+      "string": 601992,
+      "textwrap": 1815253,
+      "traceback": 540396
+    },
+    {
+      "logging": 1993690,
+      "string": 607240,
+      "textwrap": 1758426,
+      "traceback": 550234
+    },
+    {
+      "logging": 1892127,
+      "string": 528544,
+      "textwrap": 1640044,
+      "traceback": 496723
+    },
+    {
+      "logging": 1880797,
+      "string": 577325,
+      "textwrap": 1734110,
+      "traceback": 519867
+    },
+    {
+      "logging": 1924006,
+      "string": 569161,
+      "textwrap": 1742516,
+      "traceback": 515470
+    },
+    {
+      "logging": 1949516,
+      "string": 563879,
+      "textwrap": 1732587,
+      "traceback": 527091
+    },
+    {
+      "logging": 2002535,
+      "string": 560274,
+      "textwrap": 1823959,
+      "traceback": 538813
+    },
+    {
+      "logging": 1937232,
+      "string": 552589,
+      "textwrap": 1703653,
+      "traceback": 513044
+    },
+    {
+      "logging": 1938084,
+      "string": 596702,
+      "textwrap": 1824169,
+      "traceback": 548351
+    },
+    {
+      "logging": 1778214,
+      "string": 553711,
+      "textwrap": 1508466,
+      "traceback": 487977
+    },
+    {
+      "logging": 1849557,
+      "string": 509148,
+      "textwrap": 1590150,
+      "traceback": 554582
+    },
+    {
+      "logging": 1860380,
+      "string": 610987,
+      "textwrap": 1768935,
+      "traceback": 534004
+    },
+    {
+      "logging": 1863322,
+      "string": 530598,
+      "textwrap": 1552218,
+      "traceback": 481676
+    },
+    {
+      "logging": 1805193,
+      "string": 501133,
+      "textwrap": 1552909,
+      "traceback": 461097
+    },
+    {
+      "logging": 1982116,
+      "string": 535627,
+      "textwrap": 1775918,
+      "traceback": 633883
+    },
+    {
+      "logging": 1824659,
+      "string": 587455,
+      "textwrap": 1641817,
+      "traceback": 516311
+    },
+    {
+      "logging": 1872870,
+      "string": 510881,
+      "textwrap": 1446800,
+      "traceback": 467730
+    },
+    {
+      "logging": 1796698,
+      "string": 516691,
+      "textwrap": 1478280,
+      "traceback": 475293
+    },
+    {
+      "logging": 1829539,
+      "string": 503236,
+      "textwrap": 1570213,
+      "traceback": 517472
+    },
+    {
+      "logging": 1774727,
+      "string": 512724,
+      "textwrap": 1498608,
+      "traceback": 460936
+    },
+    {
+      "logging": 1817317,
+      "string": 512223,
+      "textwrap": 1583297,
+      "traceback": 527942
+    },
+    {
+      "logging": 1861931,
+      "string": 504297,
+      "textwrap": 1507273,
+      "traceback": 473671
+    }
+  ],
+  "runs_total_ns": [
+    4611510,
+    4917235,
+    6503547,
+    4796267,
+    5071934,
+    4891224,
+    4816526,
+    4793471,
+    5001522,
+    5002214,
+    4644422,
+    4823217,
+    4840350,
+    4865637,
+    5034715,
+    4794173,
+    5002825,
+    4412727,
+    4586623,
+    4880404,
+    4512352,
+    4402617,
+    5045075,
+    4672293,
+    4381928,
+    4350810,
+    4505270,
+    4330241,
+    4526350,
+    4431681
+  ],
+  "schema": "importsteady/1",
+  "single_run_top1_counts": {
+    "logging": 400
+  },
+  "started_utc": "2026-11-18T22:05:35Z",
+  "summary": {
+    "modules": [
+      {
+        "max_us": 2712.569,
+        "median_us": 1882.455,
+        "min_us": 1774.727,
+        "module": "logging",
+        "p25_us": 1834.5435,
+        "p75_us": 1945.5825,
+        "rel_iqr": 0.05898627058814154,
+        "runs_present": 30
+      },
+      {
+        "max_us": 2195.788,
+        "median_us": 1718.12,
+        "min_us": 1446.8,
+        "module": "textwrap",
+        "p25_us": 1573.484,
+        "p75_us": 1767.45475,
+        "rel_iqr": 0.11289709100644903,
+        "runs_present": 30
+      },
+      {
+        "max_us": 769.627,
+        "median_us": 562.0765,
+        "min_us": 501.133,
+        "module": "string",
+        "p25_us": 519.65425,
+        "p75_us": 580.16525,
+        "rel_iqr": 0.10765616424098849,
+        "runs_present": 30
+      },
+      {
+        "max_us": 700.998,
+        "median_us": 521.2,
+        "min_us": 460.936,
+        "module": "traceback",
+        "p25_us": 500.52525,
+        "p75_us": 540.00025,
+        "rel_iqr": 0.07573867996930164,
+        "runs_present": 30
+      }
+    ],
+    "n_runs": 30
+  },
+  "target": "logging",
+  "total_ms": {
+    "max": 6.503547,
+    "median": 4.79522,
+    "min": 4.330241,
+    "p25": 4.5158515,
+    "p75": 4.91073225
+  },
+  "warmup_totals_ns": [
+    4987617,
+    5046318
+  ]
+}
