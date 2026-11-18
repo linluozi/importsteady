@@ -171,7 +171,7 @@ First quantification of **rank stability** in Python import-cost attribution, pl
 controlled detection-floor calibration: instead of another profiler, this measures how
 often a k-cold-start subsample reproduces the all-run top-1 and top-10 set on four real
 stdlib targets (120 measured cold starts), and how small a *known* injected regression must be
-to be detected (120 fixture cold starts per delta, 30 trials each, with a chance-level
+to be detected (240 fixture cold starts per delta, 30 trials each, with a chance-level
 control). The new, falsifiable conclusions are (a) the head is stable at a >=1.37x gap
 but top-10 membership is not — Jaccard 0.85 at k=1 for `urllib.request`, 0.91 even at
 k=13, 1.00 at k=30; and (b) a +10 us regression is detected in 90% of single cold
